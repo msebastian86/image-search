@@ -3,7 +3,7 @@
 
   <form class="form form--search">
     <mat-form-field>
-      <input matInput placeholder="Search for Images" [(ngModel)]="searchQuery" [ngModelOptions]="{standalone: true}" (keyup)="searchImages(searchQuery, $event)">
+      <input matInput placeholder="Search for Images" [(ngModel)]="query" [ngModelOptions]="{standalone: true}" (keyup)="searchImages(query, $event)">
     </mat-form-field>
   </form>
 

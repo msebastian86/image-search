@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../shared/image.service';
 
-import { timer } from 'rxjs/observable/timer';
-import { debounceTime, map } from 'rxjs/operators';
-
 @Component({
   selector: 'image-list',
   templateUrl: './image-list.component.html',
