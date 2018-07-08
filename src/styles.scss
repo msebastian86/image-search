@@ -41,6 +41,15 @@ footer{
   }
 
   .logo{
-    max-width: 260px;
+    max-width: 230px;
+  }
+}
+
+.mat-card-image{
+  transition: transform 75ms ease-in-out;
+
+  &:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   }
 }

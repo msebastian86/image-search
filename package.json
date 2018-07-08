@@ -28,6 +28,8 @@
     "jquery": "^3.3.1",
     "masonry-layout": "^4.2.1",
     "ng-masonry-grid": "^1.2.5",
+    "ngx-infinite-scroll": "^6.0.1",
+    "ngx-pagination": "^3.1.1",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

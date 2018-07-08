@@ -3,7 +3,7 @@
 
   <form class="form form--search">
     <mat-form-field>
-      <input matInput placeholder="Search for Images" [(ngModel)]="searchQuery" [ngModelOptions]="{standalone: true}" (keyup)="searchImages(searchQuery)">
+      <input matInput placeholder="Search for Images" [(ngModel)]="searchQuery" [ngModelOptions]="{standalone: true}" (keyup)="searchImages(searchQuery, $event)">
     </mat-form-field>
   </form>
 
@@ -17,10 +17,10 @@
           <mat-card-title class="mb-0"><strong>User:</strong> {{image.user}}</mat-card-title>
           <mat-card-subtitle><strong>Likes:</strong> {{image.likes}}</mat-card-subtitle>
         </mat-card-header>
-        <a href="{{image.largeImageURL}}" target="_blank"><img mat-card-image src="{{image.webformatURL}}" alt=""></a>
+        <a href="{{image.largeImageURL}}" target="_blank"><img mat-card-image src="{{image.webformatURL}}" alt="" class="mat-card-image"></a>
         <mat-card-content *ngIf="image.tags" class="mb-0">
           <p>
-            <strong>Tags:</strong> {{image.tags}}
+            <strong>Tags:</strong> <small>{{image.tags}}</small>
           </p>
         </mat-card-content>
         <mat-card-actions align="start">
@@ -28,7 +28,11 @@
         </mat-card-actions>
       </mat-card>
     </div>
-    
+  </div>
+
+  <div class="buttons-container text-right">
+    <a mat-fab href="#" (click)="loadPrev($event)" *ngIf="prevButton" class="mr-2">< PREV</a>
+    <a mat-fab href="#" (click)="loadNext($event)" *ngIf="nextButton">NEXT ></a>
   </div>
   
 </div>
