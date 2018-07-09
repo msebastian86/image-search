@@ -18,6 +18,7 @@ export class ImageListComponent implements OnInit {
   resultsPage: number = 1;
   prevButton = false;
   nextButton = false;
+  gallerySize: number = 12;
 
   lastKeypressed = 0;
 
@@ -25,9 +26,9 @@ export class ImageListComponent implements OnInit {
   handleSuccess(data){
     this.searching = false
     this.imagesFound = true;
-    this.queryMaxPages = Math.ceil(data.totalHits/4);
+    this.queryMaxPages = Math.ceil(data.totalHits/this.gallerySize);
     this.images = data.hits;
-    console.log(data.hits); //hits comes from the response - log without it
+    console.log(data); //hits comes from the response - log without it
     this.paginationUpdate();
   }
 
@@ -50,7 +51,7 @@ export class ImageListComponent implements OnInit {
 
   searchImages(query: string, $event){
     
-    if ($event.timeStamp - this.lastKeypressed > 500) {
+    if ($event.timeStamp - this.lastKeypressed > 100) {
       this.searching = true;
       this.query = query;
       this.resultsPage = 1;
@@ -70,7 +71,7 @@ export class ImageListComponent implements OnInit {
 
   loadPrev($event){
     
-    if ($event.timeStamp - this.lastKeypressed > 500) {
+    if ($event.timeStamp - this.lastKeypressed > 300) {
       this.searching = true;
       if(this.prevButton) this.resultsPage--;
       this._imageService.getImages(this.query, this.resultsPage).subscribe(
@@ -84,9 +85,11 @@ export class ImageListComponent implements OnInit {
   
   loadNext($event){
     
-    if ($event.timeStamp - this.lastKeypressed > 1000) {
+    if ($event.timeStamp - this.lastKeypressed > 300) {
       this.searching = true;
-      this.resultsPage++;
+
+      if (this.resultsPage<this.queryMaxPages) this.resultsPage++;
+
       this._imageService.getImages(this.query, this.resultsPage).subscribe(
         data => this.handleSuccess(data),
         error => this.handleError(error)
